@@ -54,7 +54,7 @@
         /* 固定定位的样式 */
         .content-nav.fixed {
             position: fixed;
-            top: 100px;  /* 与导航栏高度相同 */
+            top: 125px;  /* 与导航栏高度相同 */
             left: 100px;  /* 保持与初始位置相同的左偏移 */
         }
         
@@ -213,7 +213,7 @@
             font-family: 'Montserrat', sans-serif;
             font-weight: semi-bold;
             cursor: pointer;
-            display: flex;
+            display: block;
             justify-content: space-between;
             align-items: center;
             border-radius: 10px;
@@ -227,11 +227,16 @@
             padding: 10px;
             background-color: #fff;
             }
-
-        .header-icon {
-            font-size: 18px;
-            color: #5a5a5a;
-            }
+        
+            /* 调整 SVG 图片样式 */
+        .svg-icon {
+            width: 20px;
+            height: 20px;
+            margin-left: 0px;
+            color: #000;
+            transition: all 0.3s ease; /* 加��过渡效果 */
+            margin-right: 10px; /* 添加右间距，使文本与图标之间有空隙 */
+        }
 
         .box-container {
             display: flex;
@@ -268,7 +273,10 @@
     <nav class="navbar">
         <div class="container">
             <div class="logo">
-                <a href="../index.html">ZJU-CHINA</a>
+                <a href="../index.html">
+                    <img src="../assets/img/logo.png" alt="logo" style="width: 50px; height: auto; margin-top: 10px; margin-bottom: 0px;">
+                    M-D-U-S-A
+                </a>
             </div>
             <ul class="nav-links">
                 <li class="dropdown">
@@ -413,8 +421,12 @@
                         <div class="collapse-container">
                             <div class="collapse-item">
                                 <div class="collapse-title">
+                                <!-- SVG 图片展示 -->
+                                <img src="../assets/svg/dp1_1.svg" alt="Drug Therapy" 
+                                class="svg-icon" id="drug-therapy-icon" 
+                                onmouseover="changeIcon(this, '../assets/svg/dp1_2.svg')" 
+                                onmouseout="changeIcon(this, '../assets/svg/dp1_1.svg')">    
                                 <span>Drug Therapy</span>
-                                <i class="header-icon el-icon-info"></i>
                                 </div>
                                 <div class="collapse-content">
                                 <p>In terms of <span style="font-weight: bold;">drug therapy</span>, topical medications such as minoxidil and oral medications such as finasteride are commonly used treatment means. However, these drugs have certain limitations. Minoxidil needs to be used for a long time to maintain the effect, and some patients may experience adverse reactions such as scalp itching and redness. Although finasteride has a certain effect on seborrheic alopecia, it may cause side effects such as sexual dysfunction, which limits its widespread application.</p>
@@ -423,6 +435,11 @@
                         
                             <div class="collapse-item">
                                 <div class="collapse-title">
+                                <!-- SVG 图片展示 -->
+                                <img src="../assets/svg/dp2_1.svg" alt="Surgical treatment" 
+                                class="svg-icon" id="surgical-treatment-icon" 
+                                onmouseover="changeIcon(this, '../assets/svg/dp2_2.svg')" 
+                                onmouseout="changeIcon(this, '../assets/svg/dp2_1.svg')" style="height: 20px; width: auto;">    
                                 <span>Surgical treatment</span>
                                 </div>
                                 <div class="collapse-content">
@@ -432,6 +449,11 @@
                         
                             <div class="collapse-item">
                                 <div class="collapse-title">
+                                <!-- SVG 图片展示 -->
+                                <img src="../assets/svg/dp3_1.svg" alt="Physical therapies" 
+                                class="svg-icon" id="physical-therapies-icon" 
+                                onmouseover="changeIcon(this, '../assets/svg/dp3_2.svg')" 
+                                onmouseout="changeIcon(this, '../assets/svg/dp3_1.svg')" style="height: 20px; width: auto;">  
                                 <span>Physical therapies</span>
                                 </div>
                                 <div class="collapse-content">
@@ -474,7 +496,7 @@
                     <div class="img-container">
                     <img src="../assets/img/dp_5.png" alt="students">
                     </div>
-                    <p style="color:#ddb266; text-align: center; margin-bottom: 10px; font-size: 0.9rem;"> Figure 4: "The woonderful use of copper peptides"</p>".</p>
+                    <p style="color:#ddb266; text-align: center; margin-bottom: 10px; font-size: 0.9rem;"> Figure 4: "The woonderful use of copper peptides"</p>
 
                     <p>In 2024, the <span style="font-weight: bold;">BioTarget</span> project from the JLU - NBBMS team from Jilin University combined RNAi technology, bacterial therapy, and nanomedicine. By using modified attenuated Salmonella, the team precisely knocked down drug - resistant genes through trans - kingdom RNAi technology. A large amount of RGD peptides were expressed on the surface of the bacteria to enhance its tumor - targeting ability. Meanwhile, MPEG - PLG - PLL nanoparticles were prepared to encapsulate chemotherapeutic drugs, which were then linked to the cell wall of the engineered bacteria to assist in drug delivery.</p>
                     <div class="img-container">
@@ -628,7 +650,7 @@
                 var scrollTop = $(window).scrollTop();
                 console.log('Scroll position:', scrollTop); // 调试用
                 
-                if (scrollTop + headerHeight > navTop) {
+                if (scrollTop + headerHeight + 75 > navTop) {
                     console.log('Adding fixed class'); // 调试用
                     nav.addClass('fixed');
                 } else {
@@ -693,6 +715,10 @@
             $(".collapse-content").not(content).slideUp();
             });
         });
+
+            function changeIcon(element, newSrc) {
+            element.src = newSrc;
+            }
     </script>
 </body>
 </html>
